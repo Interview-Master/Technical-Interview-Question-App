@@ -4,6 +4,7 @@ import  Home from './Home.jsx'
 import { Signup } from './Signup.jsx'
 import { Dashboard } from './Dashboard.jsx'
 import { Login } from './Login.jsx'
+import download from './assets/download.png'
 
 const Navbar = () => {
     const [ selectedPage, setSelectedPage ] = useState('');
@@ -11,9 +12,15 @@ const Navbar = () => {
 
     return (
         <>
-            <nav className="fixed w-screen bg-secondary-500 h-[80px] z-10 drop-shadow-xl">
+            <nav className="fixed w-screen bg-secondary-500 h-[80px] z-10 drop-shadow-xl bg-violet-400 text-lg">
                 <div className="flex justify-between w-full h-full px-20">
                     <div className="flex items-center gap-10">
+                        <img
+                        className="px-0 h-20" 
+                        alt="logo"
+                        src={download}
+                        onClick={() => navigate('/')}
+                        />
                         <Link
                             to="/"
                             onClick={() => setSelectedPage('home')}
@@ -27,12 +34,12 @@ const Navbar = () => {
                         </div>
                         <div className="flex items-center gap-10">
                             <Link to='/login'>
-                                <button className="bg-primary-500 text-secondary-500 hover:text-blue-400">
+                                <button className="bg-primary-500 text-secondary-500 hover:text-indigo-900">
                                     Login
                                 </button>
                             </Link>
                             <Link to='/signup'>
-                                <button className="bg-primary-500 text-secondary-500 hover:text-blue-400">
+                                <button className="bg-primary-500 text-secondary-500 hover:text-indigo-900">
                                     Signup Here
                                 </button>
                             </Link>

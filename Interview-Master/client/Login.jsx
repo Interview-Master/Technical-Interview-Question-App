@@ -1,9 +1,7 @@
 import axios from 'axios';
 import { useState } from 'react'
-import { Link, Route, Routes, useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 
-import { Signup } from './Signup.jsx'
-import { Dashboard } from './Dashboard.jsx'
 
 export const Login = () => {
   
