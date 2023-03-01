@@ -15,7 +15,9 @@ router.post('/add', questionController.createQuestion, (req,res) => {
 });
 
 // //upvote question
-// router.post();
+router.post('/upvote', questionController.upvoteQuestion, (req, res) => {
+  return res.status(200).json(res.locals.numThumbs)
+});
 
 // //downvote question
 // router.post();
