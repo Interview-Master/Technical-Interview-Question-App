@@ -7,7 +7,6 @@ module.exports = {
 
   //bycript users
   getBcrypt : (req, res, next) => {
-   
     const pass = req.body.password;
     bcrypt.hash(pass, WORKFACTOR)
         .then(hash => {
@@ -57,9 +56,10 @@ module.exports = {
   
       const response = await db.query(text, values)
       const dbpass = response.rows[0].password
+      const cohort = response.rows[0].board_id
       const verified = await bcrypt.compare(password, dbpass)
       if (verified){
-        res.cookie('token', 'user');
+        res.cookie('token', `${cohort}`);
         console.log('you are verified')
         // console.log(response.rows[0]);
         res.locals.one = response.rows[0];

@@ -4,25 +4,16 @@ const questionController = {};
 
 // retrieve all questions
 questionController.getAllQuestions = (req, res, next) => {
+    // MAKE board_id DYNAMIC
     const text = 'SELECT * FROM interviewquestion'
     db.query(text)
       .then((data) => {
-<<<<<<< HEAD
-        // console.log(data.rows);
-        res.locals.allQuestions = data;
-        return next();
-      })
-      .catch((err) => {
-        // console.log('error in getAllQuestions controller', err);
-        return next({log: 'error in getAllQuestions controller'})
-=======
-        console.log('getAllQuestions >>>> ', data.rows[0]);
-        res.locals.allQuestions = data.rows[0];
+        console.log('getAllQuestions >>>> ', data.rows);
+        res.locals.allQuestions = data.rows;
         return next();
       })
       .catch((err) => {
         return next({ log: 'error in getAllQuestions controller' }, err);
->>>>>>> dev
       })
 }
 
@@ -48,7 +39,8 @@ questionController.createQuestion = (req, res, next) => {
 
 // delete a question
 questionController.deleteQuestion = (req, res, next) => {
-
+  // target the current user's board id table
+  // select a question by its _id
     return next()
 }
 
