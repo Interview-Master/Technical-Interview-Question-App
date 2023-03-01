@@ -5,7 +5,8 @@ const questionController = {};
 // retrieve all questions
 questionController.getAllQuestions = (req, res, next) => {
     // MAKE board_id DYNAMIC
-    const text = 'SELECT * FROM interviewquestion'
+    const { token } = req.cookies
+    const text = `SELECT * FROM interviewquestion WHERE board_id = ${token}`;
     db.query(text)
       .then((data) => {
         console.log('getAllQuestions >>>> ', data.rows);
@@ -20,11 +21,12 @@ questionController.getAllQuestions = (req, res, next) => {
 // create a new question
 questionController.createQuestion = (req, res, next) => {
   // destructure req.body
-  const { content, thumbs, tags, company } = req.body;
+  const { content, tags, company } = req.body;
   console.log(req.body)
+  //console.log(req.cookie.token)
   // insert new question into database
-  const values = [content, thumbs, tags, company];
-  const text = `INSERT INTO interviewquestion (content,thumbs,tags,company) VALUES ($1, $2, $3, $4) RETURNING *`
+  const values = [content, tags, company];
+  const text = `INSERT INTO interviewquestion (content,tags,company) VALUES ($1, $2, $3) RETURNING *`
   db.query(text, values)
     .then((data) => {
       res.locals.newQuestion = data.rows[0];
@@ -46,7 +48,19 @@ questionController.deleteQuestion = (req, res, next) => {
 
 // upvote a question
 questionController.upvoteQuestion = (req, res, next) => {
-
+    // target a question by its _id
+    const { _id } = req.body;
+    const text = `UPDATE interviewquestion SET thumbs = thumbs + 1 WHERE _id = ${_id} RETURNING thumbs`;
+    db.query(text)
+      .then((data) => {
+        console.log('upvote thumbs >>>', data)
+        res.locals.numThumbs = data.rows[0];
+        return next()
+      })
+      .catch((err) => {
+        console.log(err);
+        return next({log: 'error in upvoteQuestion controller'})
+      })
     return next()
 }
 

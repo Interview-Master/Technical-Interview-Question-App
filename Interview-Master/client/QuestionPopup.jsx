@@ -25,7 +25,7 @@ export const QuestionPopup = (props) => {
     useEffect(async () => {
         try {
             if (props.trigger) {
-                const response = await axios.get('/') //waitfor backend route
+                const response = await axios.get('/') //waitfor backend route for comments
             }
             const allComments = [];
             for (let i = 0; i < response.data.length; i++) {
