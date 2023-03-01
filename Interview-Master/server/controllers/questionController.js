@@ -7,6 +7,7 @@ questionController.getAllQuestions = (req, res, next) => {
     const text = 'SELECT * FROM interviewquestion'
     db.query(text)
       .then((data) => {
+<<<<<<< HEAD
         // console.log(data.rows);
         res.locals.allQuestions = data;
         return next();
@@ -14,6 +15,14 @@ questionController.getAllQuestions = (req, res, next) => {
       .catch((err) => {
         // console.log('error in getAllQuestions controller', err);
         return next({log: 'error in getAllQuestions controller'})
+=======
+        console.log('getAllQuestions >>>> ', data.rows[0]);
+        res.locals.allQuestions = data.rows[0];
+        return next();
+      })
+      .catch((err) => {
+        return next({ log: 'error in getAllQuestions controller' }, err);
+>>>>>>> dev
       })
 }
 
