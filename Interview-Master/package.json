@@ -7,11 +7,13 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "start" : "concurrently \"cd ./server && npm run server\" \"cd ./client && npm run dev\""
+    "start": "concurrently \"cd ./server && npm run server\" \"cd ./client && npm run dev\""
   },
   "dependencies": {
-    "express": "^4.18.2",
     "axios": "^1.3.4",
+    "bcrypt": "^5.1.0",
+    "cookie-parser": "^1.4.6",
+    "express": "^4.18.2",
     "file-loader": "^6.2.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

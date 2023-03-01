@@ -2,7 +2,6 @@ import axios from 'axios';
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 
-
 export const Login = () => {
   
   const navigate = useNavigate();
@@ -21,6 +20,7 @@ export const Login = () => {
       setError('Invalid Email/Password')
     }
   }
+  
   return (
     <>
       <nav className='flex flex-col items-center justify-center h-screen w-screen'>
