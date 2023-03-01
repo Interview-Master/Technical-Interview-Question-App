@@ -4,11 +4,12 @@ import { useNavigate, Link } from "react-router-dom";
 
  export const Signup = () => {
     
-  const [ firstName, setFirstName ] = useState('');
-  const [ lastName, setLastName ] = useState('');
+  const [ firstname, setFirstName ] = useState('');
+  const [ lastname, setLastName ] = useState('');
   const [ email, setEmail ] = useState('');
   const [ password, setPassword ] = useState('')
   const [ error, setError ] = useState('')
+  const [ board_id, setBoard_id ] = useState('')
 
   const navigate = useNavigate()
   
@@ -16,9 +17,10 @@ import { useNavigate, Link } from "react-router-dom";
     e.preventDefault();
 
     try {
-        const response = await axios.post('/', { firstName, lastName, email, password})
+        const response = await axios.post('api/user/signup', { firstname, lastname, email, password, board_id })
         navigate('/login')
     } catch (err) {
+      console.log(err)
         setError('Email already registered with this address')
     }
   }
@@ -31,15 +33,15 @@ import { useNavigate, Link } from "react-router-dom";
               className='flex flex-col items-center justify-center text-lg'>
           <input 
             className='p-6 rounded-sm border-solid border-1'
-            type="firstName"
-            value={firstName}
+            type="firstname"
+            value={firstname}
             onChange={(e) => setFirstName(e.target.value)}
             placeholder="First Name:">
           </input>
           <input
             className='p-6 rounded-sm border-solid border-1'
-            type="lastName"
-            value={lastName}
+            type="lastname"
+            value={lastname}
             onChange={(e) => setLastName(e.target.value)}
             placeholder="Last Name:">
           </input>
@@ -56,6 +58,13 @@ import { useNavigate, Link } from "react-router-dom";
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             placeholder="Create Password:">
+          </input>
+          <input
+            className='p-6 rounded-sm border-solid border-1'
+            type="board_id"
+            value={board_id}
+            onChange={(e) => setBoard_id(e.target.value)}
+            placeholder="Cohort Group Association(#):">
           </input>
           <button className='border-solid rounded-full p-4 border-2 hover:text-blue-400'>Sign Up</button>
         </form>
