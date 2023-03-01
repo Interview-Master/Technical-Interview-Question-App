@@ -15,7 +15,7 @@ export const Login = () => {
     e.preventDefault();
     
     try {
-      const response = await axios.post('', {email, password}) //backend route
+      const response = await axios.post('/api/user/login', {email, password}) //backend route
       if (response) navigate('/dashboard');
     } catch (err) {
       setError('Invalid Email/Password')
