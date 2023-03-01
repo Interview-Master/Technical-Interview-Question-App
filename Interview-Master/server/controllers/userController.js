@@ -16,8 +16,8 @@ module.exports = {
       //Signup new user
   async newUser (req, res,next){
      try{
-      const { firstname, lastname, email, password, boards_id } = req.body;
-      const values = [ firstname, lastname, email, password, boards_id]
+      const { firstname, lastname, email, password, board_id } = req.body;
+      const values = [ firstname, lastname, email, password, board_id ]
       const text = 'INSERT INTO users (firstname, lastname, email, password, board_id) VALUES($1,$2,$3,$4,$5) RETURNING *'
       const user = await db.query(text,values)
       //console.log(user)

@@ -21,9 +21,10 @@ questionController.getAllQuestions = (req, res, next) => {
 questionController.createQuestion = (req, res, next) => {
   // destructure req.body
   const { content, thumbs, tags, company } = req.body;
+  console.log(req.body)
   // insert new question into database
-  const values = [content, thumbs, tags, company]
-  const text = `INSERT INTO interviewquestion (content,thumbs,tags,company) VALUES ($1, $2,$3,$4) RETURNING *`
+  const values = [content, thumbs, tags, company];
+  const text = `INSERT INTO interviewquestion (content,thumbs,tags,company) VALUES ($1, $2, $3, $4) RETURNING *`
   db.query(text, values)
     .then((data) => {
       res.locals.newQuestion = data.rows[0];

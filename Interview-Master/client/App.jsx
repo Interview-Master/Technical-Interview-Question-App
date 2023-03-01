@@ -1,13 +1,14 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import './App.css'
+import React from 'react';
+import Navbar from './Navbar.jsx'
+import { Footer } from './Footer.jsx'
 
-function App() {
-
+const App = () => {
+  
   return (
-    <div className="App">
-      
-    </div>
+    <>
+    <Navbar/>
+    <Footer/>
+   </>
   )
 }
 
