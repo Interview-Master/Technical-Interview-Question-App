@@ -4,17 +4,17 @@ const questionController = {};
 
 // retrieve all questions
 questionController.getAllQuestions = (req, res, next) => {
-    const text = 'SELECT * FROM interviewquestions'
+    const text = 'SELECT * FROM interviewquestion'
     db.query(text)
       .then((data) => {
-        console.log(data);
+        // console.log(data.rows);
         res.locals.allQuestions = data;
         return next();
       })
       .catch((err) => {
-        return next(err);
+        // console.log('error in getAllQuestions controller', err);
+        return next({log: 'error in getAllQuestions controller'})
       })
-    return next({log: 'error in getAllQuestions controller'})
 }
 
 // create a new question
