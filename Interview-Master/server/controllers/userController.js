@@ -57,9 +57,14 @@ module.exports = {
       const response = await db.query(text, values)
       const dbpass = response.rows[0].password
       const cohort = response.rows[0].board_id
+      const firstname = response.rows[0].firstname
+      const lastName = response.rows[0].lastname
+      const name = firstname + ' ' + lastName
+
       const verified = await bcrypt.compare(password, dbpass)
       if (verified){
-        res.cookie('token', `${cohort}`);
+        res.cookie('cohort', `${cohort}`);
+        res.cookie ('name', `${name}`)
         console.log('you are verified')
         // console.log(response.rows[0]);
         res.locals.one = response.rows[0];

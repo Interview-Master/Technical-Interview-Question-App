@@ -14,9 +14,24 @@ router.post('/add', questionController.createQuestion, (req,res) => {
   return res.status(200).json(res.locals.newQuestion);
 });
 
-// //upvote question
+//upvote question
 router.post('/upvote', questionController.upvoteQuestion, (req, res) => {
-  return res.status(200).json(res.locals.numThumbs)
+  return res.status(200).json(res.locals.numThumbs);
+});
+
+//get different cohort
+router.get('/:id', questionController.getdifferentCohort, (req,res) => {
+  return res.status(200).json(res.locals.different);
+});
+
+//get comments for question
+router.post('/comments', questionController.getComments, (req, res) => {
+  return res.status(200).json(res.locals.comments);
+});
+
+//post new comment
+router.post('/postComment', questionController.postComment, (req, res) => {
+  return res.status(200).json(res.locals.newComment);
 });
 
 // //downvote question
