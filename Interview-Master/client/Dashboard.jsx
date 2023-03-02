@@ -3,12 +3,12 @@ import React, { useState, useEffect } from 'react';
 import { QuestionPopup } from './QuestionPopup.jsx';
 import { AddQuestion } from './AddQuestion.jsx';
 
-export const Dashboard = () => {
+export const Dashboard = (props) => {
 
 const [ buttonPopup, setButtonPopup ] = useState(false); // needs to hold state for each question
 const [ addQuestion, setAddQuestion ] = useState(false);
 const [ thumbs, setThumbs ] = useState('');
-const [ allQuestions, setAllQuestions ] = useState([]); //try empty array
+const [ allQuestions, setAllQuestions ] = useState(''); //try empty array
 const [ resfresh, setRefresh ] = useState(false)
 const [ count, setCount ] = useState(0)
 
@@ -27,7 +27,7 @@ const thumbsUp = (id) => {
 }
 let route = '/api/question/getAll'
 console.log(route)
-useEffect(() => {
+useEffect((props) => {
     // if (resfresh) {window.location.reload()}
     setTimeout(()=> {
         setCount(count =>  count + 1)
@@ -41,13 +41,15 @@ useEffect(() => {
                 <div className='flex justify-between'>
                   <div className='flex left-0 text-xl text-gray-900'>{data.data[i].content}</div>
                     <div>
-                        <button className='flex justify-right bg-tertiary-500 w-6 p-3 rounded-lg text-green-600 text-xl -mt-1 cursor-pointer'
+                        <button 
+                        className='flex justify-right bg-tertiary-500 w-6 p-3 rounded-lg text-green-600 text-xl -mt-1 cursor-pointer'
                         onClick={() => setButtonPopup(true)}>+</button>
                         <QuestionPopup 
-                            triggers={buttonPopup} 
-                            setTriggers={setButtonPopup} 
+                            trigger={buttonPopup} 
+                            setTrigger={setButtonPopup} 
                             //   questions={questions[i]} 
-                            _id={data.data[i]._id}>
+                            // _id={data.data[i]._id}>
+                            >
                         </QuestionPopup>
                   </div>
               </div>
@@ -77,7 +79,7 @@ useEffect(() => {
     }); //does it need to be async?
         
     // getQuestions();
-}, [count]);
+}, []);
 
     return (
         <div className='flex flex-col items-center justify-center h-screen w-screen'>
@@ -100,7 +102,7 @@ useEffect(() => {
                         setTrigger={setAddQuestion} 
                         resfresh={resfresh}
                         setResfresh={setRefresh}
-                        > Add Interview Question 
+                        > 
                 </AddQuestion> 
             </div>
             <div className='w-11/12 h-4/6 flex flex-col items-center shadow-lg overflow-y-auto'>
