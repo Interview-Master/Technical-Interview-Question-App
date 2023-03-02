@@ -5,7 +5,6 @@ import PreviousMap from 'postcss/lib/previous-map';
 export const AddQuestion = (props) => {
 
     const [ content, setContent ] = useState('');
-    const [ thumbs, setThumbs ] = useState('');
     const [ tags, setTags ] = useState('');
     const [ company, setCompany ] = useState('');
 
@@ -16,7 +15,6 @@ export const AddQuestion = (props) => {
                 content,
                 tags,
                 company,
-                thumbs, //??
                 questionID: props._id,
             })
             if (response.status === 200) {
@@ -25,7 +23,6 @@ export const AddQuestion = (props) => {
                 setContent('')
                 setTags('')
                 setCompany('')
-                setThumbs('') // ???
             }
         }
         catch (err) {
