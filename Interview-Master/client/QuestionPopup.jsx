@@ -37,7 +37,7 @@ export const QuestionPopup = (props) => {
                         const allCommentsOnQ = [];
                         for (let i = 0; i < data.data.length; i++) {
                             console.log('Comment >>>>>> ', data.data[i].comment);
-                        allComments.push(
+                        allCommentsOnQ.push(
                             <div key={i}>
                                 {data.data[i].comment}
                                 {/* Maybe add a delete comment button
@@ -58,7 +58,7 @@ export const QuestionPopup = (props) => {
                     <button onClick={() => props.setTrigger(false)}>X</button>
                 </div>
                 <div>
-                    {props.questions} {/*pass down questions through dashboard to QuestionPopUp*/}
+                    {props.content} {/*pass down questions through dashboard to QuestionPopUp*/}
                 </div>
                 <div>
                     {allComments}
