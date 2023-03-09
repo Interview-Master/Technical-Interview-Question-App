@@ -5,10 +5,10 @@ import { AddQuestion } from './AddQuestion.jsx';
 
 export const Dashboard = (props) => {
 
-const [ buttonPopup, setButtonPopup ] = useState(false); // needs to hold state for each question
+const [ buttonPopup, setButtonPopup ] = useState(false); 
 const [ addQuestion, setAddQuestion ] = useState(false);
 const [ thumbs, setThumbs ] = useState('');
-const [ allQuestions, setAllQuestions ] = useState(''); //try empty array
+const [ allQuestions, setAllQuestions ] = useState(''); 
 const [ count, setCount ] = useState(0)
 
 const thumbsUp = (id) => {
@@ -47,8 +47,6 @@ useEffect((props) => {
                             trigger={buttonPopup} 
                             setTrigger={setButtonPopup} 
                             content={data.data[i].content}
-                            //   questions={questions[i]} 
-                            // _id={data.data[i]._id}>
                             >
                         </QuestionPopup>
                      </div>
@@ -73,7 +71,6 @@ useEffect((props) => {
           </div>
           );
           }
-          console.log(questions);
       setAllQuestions(questions);
     }); 
 }, [count]);

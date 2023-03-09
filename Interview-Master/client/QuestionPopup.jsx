@@ -49,7 +49,7 @@ export const QuestionPopup = (props) => {
             setAllComments(allCommentsOnQ);
                 }) //waitfor backend route for comments
             
-    }, [])
+    }, [count])
 
     return (props.trigger) ? (
         <div>
