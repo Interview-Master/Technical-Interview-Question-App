@@ -29,14 +29,15 @@ export const QuestionPopup = (props) => {
             setCount(count =>  count + 1)
         }, 1000);
 
-            if (props.triggers) {
+            
                 axios.post('/api/question/comments', {
                     questionID: props._id
                 })
                     .then(data => {
-                        const allComments = [];
+                        const allCommentsOnQ = [];
                         for (let i = 0; i < data.data.length; i++) {
-                        allComments.push(
+                            console.log('Comment >>>>>> ', data.data[i].comment);
+                        allCommentsOnQ.push(
                             <div key={i}>
                                 {data.data[i].comment}
                                 {/* Maybe add a delete comment button
@@ -45,19 +46,19 @@ export const QuestionPopup = (props) => {
                     )
                     .catch(err => console.log('Error in getting comments: ', err))
             }
-            setAllComments(allComments);
+            setAllComments(allCommentsOnQ);
                 }) //waitfor backend route for comments
-            } 
+            
     }, [count])
 
-    return (props.triggers) ? (
+    return (props.trigger) ? (
         <div>
             <div className='fixed top-1/4 inset-x-0 mx-auto h-1/2 w-1/2 bg-purple-200 bg-opacity-95 rounded-xl'>
                 <div className='flex justify-end pr-3 pt-3 text-xl text-semibold'>
-                    <button onClick={() => props.setTriggers(false)}>X</button>
+                    <button onClick={() => props.setTrigger(false)}>X</button>
                 </div>
                 <div>
-                    {props.questions} {/*pass down questions through dashboard to QuestionPopUp*/}
+                    {props.content} {/*pass down questions through dashboard to QuestionPopUp*/}
                 </div>
                 <div>
                     {allComments}
